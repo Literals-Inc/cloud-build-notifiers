@@ -1,0 +1,46 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+apiVersion: cloud-build-notifiers/v1
+kind: SlackNotifier
+metadata:
+  name: slack-notifier
+spec:
+  notification:
+    filter: build.status in [Build.Status.SUCCESS, Build.Status.FAILURE, Build.Status.TIMEOUT]
+    delivery:
+      webhookUrl:
+        secretRef: webhook-url
+  secrets:
+    - name: webhook-url
+      value: ENC[AES256_GCM,data:3h0LFRbfZdupu3TeYXvo3maM69Imu3W5YqjYc4ft7OfOznW5hddvq5sGz/ESFh2LP9amiNJe41IE0+fuT5H6IRU1cGCd3G0x,iv:OVm4J0rXjpRIfJ6UVmhHNEW9Zsryt0dleH/KR4UsPkg=,tag:Dv0o+80Jvz2oAOZ1xyu+PA==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1grr6dyyvy3s3fdf9mgrnm2g3g2x4tw7udzzwfsd779dqgyjhpp8s9zky3z
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBFWG1HUUxaZGZnREZEeSsx
+        MGU0TDQ0eVZWT09FUXZneUR5Yk03RHVMUzI0Cm1KWk5zMHVwbDk3dnBZd1ByNjJE
+        K0cxS21sUURQNjZjSWtRQnRET1V5V2MKLS0tIHNOaGdUaHNCeXRUTlBZbkQ5cGdW
+        TDJXOFFFc3c0MVYzMnF1Rnp2RFJ3K2MK2DaH3tbAQnkPk9AxFDss5ltVvIGoMl6B
+        Q+dCVGThtDioxFSDfHo2llgoHPnqOqsucpXPmWv2TrWBU9QHsIUyKg==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2021-09-08T19:12:59Z"
+  mac: ENC[AES256_GCM,data:x7EROb6lsiPIx5KQJiFzbpi6Uuav720wJBG2Msz+d7vXpoRwwPbFOIcRfTZkp0ymP237tUqFENf0BVn4RQe1dJMhNAB4r0aI6C9ZDYU8wxoOOzJM6p8sSB3YeRSQq1GnrxfC0AsAK5iSINdDVbokCyjYvkG01kperVIKa0AE7RU=,iv:IQ5H3w2jyOi6OLJF2V3cHJEWRTz9YGsXSKvieSLleas=,tag:fmI+mHNhQ/okQymiqmNxuQ==,type:str]
+  pgp: []
+  encrypted_regex: ^(value)$
+  version: 3.7.1
